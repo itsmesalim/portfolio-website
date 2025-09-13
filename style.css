@@ -1,26 +1,40 @@
-/* Reset and base styles */
+/* ==================== RESET ==================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Poppins", Arial, sans-serif;
   line-height: 1.6;
   color: #333;
   scroll-behavior: smooth;
+  background: #fff;
 }
+
 a {
   text-decoration: none;
   color: inherit;
+  transition: color 0.3s ease;
 }
+
+a:hover {
+  color: #00adb5;
+}
+
 img {
   max-width: 100%;
   height: auto;
   border-radius: 10px;
+  transition: transform 0.3s ease;
 }
 
-/* Header */
+img:hover {
+  transform: scale(1.03);
+}
+
+/* ==================== HEADER ==================== */
 header {
   background: #222;
   color: #fff;
@@ -32,20 +46,28 @@ header {
   top: 0;
   z-index: 1000;
 }
+
 header h1 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 600;
 }
+
 nav ul {
   list-style: none;
   display: flex;
   gap: 1rem;
 }
+
 nav ul li a {
   color: #fff;
-  transition: color 0.3s;
+  font-weight: 500;
+  padding: 5px 8px;
+  border-radius: 5px;
+  transition: background 0.3s ease;
 }
+
 nav ul li a:hover {
-  color: #00adb5;
+  background: #00adb5;
 }
 
 /* Hamburger */
@@ -54,6 +76,7 @@ nav ul li a:hover {
   cursor: pointer;
   font-size: 1.5rem;
 }
+
 @media (max-width: 768px) {
   nav ul {
     display: none;
@@ -73,54 +96,70 @@ nav ul li a:hover {
   }
 }
 
-/* Hero Section */
+/* ==================== HERO ==================== */
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 3rem 1rem;
+  padding: 4rem 1rem;
   background: #f5f5f5;
-}
-.hero img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  margin-bottom: 1rem;
-}
-.hero h2 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-.hero p {
-  max-width: 600px;
-  margin: 0 auto;
+  overflow: hidden;
 }
 
-/* About Section */
-.about {
+.hero img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid #00adb5;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.hero h2 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards 0.3s;
+}
+
+.hero p {
+  max-width: 650px;
+  margin: 0 auto;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards 0.6s;
+}
+
+/* ==================== SECTIONS ==================== */
+.about,
+.projects,
+.contact {
   padding: 3rem 1rem;
   max-width: 1000px;
   margin: 0 auto;
-}
-.about h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-.about p {
-  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
 }
 
-/* Projects Section */
-.projects {
-  padding: 3rem 1rem;
-  background: #fafafa;
+.about.reveal,
+.projects.reveal,
+.contact.reveal {
+  opacity: 1;
+  transform: translateY(0);
 }
-.projects h2 {
+
+.about h2,
+.projects h2,
+.contact h2 {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #222;
 }
+
+/* ==================== PROJECT CARDS ==================== */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -128,6 +167,7 @@ nav ul li a:hover {
   max-width: 1000px;
   margin: 0 auto;
 }
+
 .project-card {
   position: relative;
   background: #fff;
@@ -137,15 +177,14 @@ nav ul li a:hover {
   text-align: center;
   cursor: pointer;
   overflow: hidden;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .project-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
-.project-card img {
-  width: 100%;
-  border-radius: 10px;
-}
+
 .project-info {
   position: absolute;
   bottom: -100%;
@@ -155,17 +194,19 @@ nav ul li a:hover {
   color: #fff;
   padding: 1rem;
   text-align: center;
-  transition: bottom 0.3s;
+  transition: bottom 0.3s ease;
 }
+
 .project-card:hover .project-info {
   bottom: 0;
 }
 
-/* Filter Buttons */
+/* ==================== FILTER BUTTONS ==================== */
 .filters {
   text-align: center;
   margin-bottom: 2rem;
 }
+
 .filters button {
   background: #eee;
   border: none;
@@ -175,13 +216,14 @@ nav ul li a:hover {
   cursor: pointer;
   transition: all 0.3s;
 }
+
 .filters button.active,
 .filters button:hover {
   background: #00adb5;
   color: #fff;
 }
 
-/* Footer */
+/* ==================== FOOTER ==================== */
 footer {
   background: #222;
   color: #fff;
@@ -190,7 +232,7 @@ footer {
   margin-top: 2rem;
 }
 
-/* Back to Top Button */
+/* ==================== BACK TO TOP ==================== */
 #backToTop {
   position: fixed;
   bottom: 20px;
@@ -198,14 +240,20 @@ footer {
   background: #00adb5;
   color: #fff;
   border: none;
-  padding: 10px 15px;
+  padding: 12px 16px;
   border-radius: 50%;
   font-size: 18px;
   cursor: pointer;
   display: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: background 0.3s ease;
 }
 
-/* Lightbox */
+#backToTop:hover {
+  background: #007b80;
+}
+
+/* ==================== LIGHTBOX ==================== */
 .lightbox {
   position: fixed;
   top: 0;
@@ -218,8 +266,21 @@ footer {
   align-items: center;
   display: none;
 }
+
 .lightbox img {
   max-width: 90%;
   max-height: 80%;
   border-radius: 10px;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
